@@ -59,6 +59,7 @@ if ws then
                     mon.write("using us!")
                     sleep(4)
                     mon.clear()
+                    exit()
                 end)
                 dButton.onClick(function() 
                     numpadmon.clear()
@@ -71,12 +72,14 @@ if ws then
                     local num2b = button.create("2")
                     num2b.setPos(2,1)
                     button.await(num1b,num2b)
+                    exit()
                     
                 end)
                 addButton.onClick(function() 
                     mon.clear()
                     numpadmon.clear()
                     ws.send("@addmoney/"..fileData.."/1")
+                    mon.setCursorPos(1,1)
                     mon.write("Added Money!")
                     local exit = button.create("Exit")
                     exit.setPos(1,1)
@@ -86,6 +89,7 @@ if ws then
                         sleep(4)
                         mon.clear()
                         numpadmon.clear()
+                        exit()
                     end)
                     button.await(exit)
                 end)
@@ -115,6 +119,7 @@ if ws then
                 sleep(4)
                 mon.clear()
                 numpadmon.clear()
+                exit()
             end
         end
     end
