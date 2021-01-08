@@ -35,6 +35,8 @@ while true do
                 random.onClick(function ()
                     if tonumber(args[2]) >= 10 then
                         ws.send("@addmoney/"..args[1].."/-10")
+                        local rng = random(60)
+                        musicify_API.play({rng})
                     end
                 end)
             else
