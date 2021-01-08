@@ -38,6 +38,16 @@ while true do
                         local rng = random(60)
                         musicify_API.play({rng})
                         exit()
+                    else
+                        mon.clear()
+                        mon.setCursorPos(1,1)
+                        mon.write("You need 10 money")
+                        mon.setCursorPos(1,2)
+                        mon.write("Your money: "..args[2])
+                        turtle.suckDown()
+                        turtle.drop()
+                        sleep(4)
+                        exit()
                     end
                 end)
             else
