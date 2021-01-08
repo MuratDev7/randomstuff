@@ -19,7 +19,10 @@ bank.onClick(function ()
 end)
 
 while true do
+  mon.clear()
+  mon.setCursorPos(1,1)
+  mon.write("Bank Project")
+  mon.setCursorPos(1,3)
+  mon.write("Programs:")
     button.await(jukebox,bank)
 end
-
-
