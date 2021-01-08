@@ -14,9 +14,9 @@ local ws = http.websocket("ws://kristmine.herokuapp.com")
 mon.clear()
 mon.setCursorPos(1,1)
 mon.write("Drop card to start")
-while true do 
+while true do
     local succ = turtle.suck()
-    if succ then 
+    if succ then
         print("succ")
         turtle.dropDown()
         if fs.exists("disk/carddata.txt") then
@@ -47,7 +47,7 @@ while true do
                         turtle.suckDown()
                         turtle.drop()
                         sleep(4)
-                        exit()
+                        os.exit()
                     end
                 end)
             else
@@ -66,5 +66,5 @@ while true do
             turtle.drop()
             exit()
         end
-    end    
+    end
 end
