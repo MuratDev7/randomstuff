@@ -30,7 +30,13 @@ while true do
             print("receive")
             local args = string.split(receivedData, ",")
             if tonumber(args[2]) >= 1 then
-                musicify_API.play({1})
+                local random = button.create("Random Song")
+                random.setPos(1,4)
+                random.onClick(function ()
+                    if tonumber(args[2]) >= 10 then
+                        ws.send("@addmoney/"..args[1].."/-10")
+                    end
+                end)
             else
                 mon.clear()
                 mon.setCursorPos(1,1)
@@ -40,10 +46,12 @@ while true do
                 turtle.suckDown()
                 turtle.drop()
                 sleep(4)
+                exit()
             end
         else
             turtle.suckDown()
             turtle.drop()
+            exit()
         end
     end    
 end
