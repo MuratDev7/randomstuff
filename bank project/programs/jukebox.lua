@@ -37,7 +37,7 @@ while true do
                         ws.send("@addmoney/"..args[1].."/-10")
                         local rng = random(60)
                         musicify_API.play({rng})
-                        exit()
+                        error("Terminated")
                     else
                         mon.clear()
                         mon.setCursorPos(1,1)
@@ -47,7 +47,7 @@ while true do
                         turtle.suckDown()
                         turtle.drop()
                         sleep(4)
-                        os.exit()
+                        os.error("Terminated")
                     end
                 end)
             else
@@ -59,12 +59,12 @@ while true do
                 turtle.suckDown()
                 turtle.drop()
                 sleep(4)
-                exit()
+                error("Terminated")
             end
         else
             turtle.suckDown()
             turtle.drop()
-            exit()
+            error("Terminated")
         end
     end
 end

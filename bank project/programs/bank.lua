@@ -3,10 +3,9 @@ os.loadAPI("./button.lua")
 print("Util loaded")
 local ws,err = http.websocket("ws://kristmine.herokuapp.com")
 local mon = peripheral.wrap("top")
-local numpadmon = peripheral.wrap("right")
-print("Websocket and monitor cakked")
+print("Websocket and monitor called")
 mon.clear()
-button.setMonitor(numpadmon)
+button.setMonitor(mon)
 print("monitor cleared")
 
 
@@ -15,7 +14,6 @@ if ws then
         mon.setTextColor(1)
         mon.setBackgroundColor(2)
         sleep(0.1)
-        numpadmon.clear()
         mon.clear()
         mon.setCursorPos(1,1)
         mon.write("Please drop your")
@@ -45,11 +43,10 @@ if ws then
                 local exitButton = button.create("Exit")
                 local dButton = button.create("Deposit")
                 local addButton = button.create("Add Money")
-                exitButton.setPos(1,1)
-                dButton.setPos(1,2)
-                addButton.setPos(1,3)
-                exitButton.onClick(function() 
-                    numpadmon.clear()
+                exitButton.setPos(1,4)
+                dButton.setPos(1,5)
+                addButton.setPos(1,6)
+                exitButton.onClick(function()
                     turtle.suckDown()
                     turtle.drop()
                     mon.clear()
@@ -59,10 +56,9 @@ if ws then
                     mon.write("using us!")
                     sleep(4)
                     mon.clear()
-                    exit()
+                    error("Terminated")
                 end)
-                dButton.onClick(function() 
-                    numpadmon.clear()
+                dButton.onClick(function()
                     mon.clear()
                     mon.setCursorPos(1,1)
                     mon.write("Numpad test started")
@@ -72,24 +68,22 @@ if ws then
                     local num2b = button.create("2")
                     num2b.setPos(2,1)
                     button.await(num1b,num2b)
-                    exit()
-                    
+                    error("Terminated")
+
                 end)
-                addButton.onClick(function() 
+                addButton.onClick(function()
                     mon.clear()
-                    numpadmon.clear()
                     ws.send("@addmoney/"..fileData.."/1")
                     mon.setCursorPos(1,1)
                     mon.write("Added Money!")
                     local exit = button.create("Exit")
                     exit.setPos(1,1)
-                    exit.onClick(function() 
+                    exit.onClick(function()
                         turtle.suckDown()
                         turtle.drop()
                         sleep(4)
                         mon.clear()
-                        numpadmon.clear()
-                        exit()
+                        error("Terminated")
                     end)
                     button.await(exit)
                 end)
@@ -101,15 +95,15 @@ if ws then
                 local carddata = fs.open("disk/carddata.txt", "w")
                 all = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 e = ""
-                
+
                 for i = 1, 6 do
                     r = math.random(#all)
                     e = e..string.sub(all,r,r)
                 end
                 carddata.write(e)
-                numpadmon.clear()
-                numpadmon.setCursorPos(1,1)
-                numpadmon.write(e)
+
+
+
                 carddata.close()
                 mon.clear()
                 mon.setCursorPos(1,1)
@@ -118,11 +112,11 @@ if ws then
                 turtle.drop()
                 sleep(4)
                 mon.clear()
-                numpadmon.clear()
-                exit()
+
+                error("Terminated")
             end
         end
     end
-    
+
     ws.close()
 end
