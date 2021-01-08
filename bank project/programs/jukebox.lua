@@ -37,6 +37,7 @@ while true do
                         ws.send("@addmoney/"..args[1].."/-10")
                         local rng = random(60)
                         musicify_API.play({rng})
+                        exit()
                     end
                 end)
             else
